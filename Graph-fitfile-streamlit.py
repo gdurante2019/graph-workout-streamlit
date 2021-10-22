@@ -1,4 +1,6 @@
 
+# Work in progress; not yet finalized
+
 import os
 import datetime
 from fitparse import FitFile
