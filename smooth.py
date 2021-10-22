@@ -1,4 +1,4 @@
-# Magic from https://stackoverflow.com/a/5516430/15578251
+# This function provided by Jonas Häggqvist (https://github.com/rasher):  "Magic from https://stackoverflow.com/a/5516430/15578251"
 import numpy
 
 def smooth(x,window_len=11,window='hanning'):
