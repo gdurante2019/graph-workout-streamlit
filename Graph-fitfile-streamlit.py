@@ -9,7 +9,6 @@ from tqdm import tqdm
 import streamlit as st
 
 
-
 # From Joe Nelson's streamlit script for predicting school student's age based on writing sample
 # Repo:  jnels13/Screening-Childrens-Writing-Level-With-NLP
 
@@ -36,7 +35,9 @@ def main():
     # defined in the above code 
     st.markdown(html_temp, unsafe_allow_html = True) 
 
+    # to upload a file:
     uploaded_file = st.file_uploader("Choose a file")
+
 	if uploaded_file is not None:
 	    # To read file as bytes:
 	    bytes_data = uploaded_file.getvalue()
@@ -55,10 +56,6 @@ def main():
 	    st.write(dataframe)
       
    
-
-
-
-
 
     # the following lines create text boxes in which the user can enter  
     # the data required to make the prediction 
