@@ -1,5 +1,5 @@
 # Code for producing summary graph of Zwift rides
-This repo houses code for a function that takes in a fitfile and returns a graph with a similar color scheme to Zwift workout summary graphs.
+This repo houses code for a function that takes in a fitfile and returns a graph with a similar color scheme to Zwift workout summary graphs.  Code is a work in progress.
 
 ## Purpose
 The inspiration for this project comes from discussions with fellow Zwift enthusiasts who race in the Zwift Racing League on the Backpedal team and would like to share their workout summary graphs from Zwift rides in a simple, standardized way in chat discussions.  
