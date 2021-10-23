@@ -11,7 +11,8 @@ Users will upload workout fitfiles and enter their FTP. Optionally, users who wa
 
 Here's an example:
 
-example-fitfile-graph.png![image](https://user-images.githubusercontent.com/46698605/138544965-b8c72825-1860-4d2f-9b5f-85c8e9563844.png)
+
+![image](https://user-images.githubusercontent.com/46698605/138544965-b8c72825-1860-4d2f-9b5f-85c8e9563844.png)
 
 
 ## Coming soon:
