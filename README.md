@@ -9,6 +9,11 @@ The inspiration for this project comes from discussions with fellow Zwift enthus
 ## To use:
 Users will upload workout fitfiles and enter their FTP. Optionally, users who want to have their name and/or profile pictures displayed on the graph, they can upload a picture and type in their name.
 
+Here's an example:
+
+example-fitfile-graph.png![image](https://user-images.githubusercontent.com/46698605/138544965-b8c72825-1860-4d2f-9b5f-85c8e9563844.png)
+
+
 ## Coming soon:
 I'm working on deploying this code using Streamlit to allow everyone to generate a workout graph easily from a simple interface.
 Watch this space for additional functionality and updates...
