@@ -18,3 +18,5 @@ def smooth(x,window_len=11,window='hanning'):
         w=eval('numpy.'+window+'(window_len)')
     y=numpy.convolve(w/w.sum(),s,mode='same')
     return y[window_len:-window_len+1]
+
+
