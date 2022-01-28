@@ -12,14 +12,14 @@ Users will upload workout fitfiles and enter their FTP.  Here's an example:
 ![image](https://github.com/gdurante2019/graph-workout-streamlit/blob/main/example-graph-no-photo.png)
 
 
-I'm also working on additional functionality to enable users to upload a profile picture and name caption.  Here's an example of what this might look like:
-
-![image](https://user-images.githubusercontent.com/46698605/138544965-b8c72825-1860-4d2f-9b5f-85c8e9563844.png)
-
 
 ## Planned feature additions:
 * Adding max power annotation and plot of heart rate during the workout
 * Deploying this code using Streamlit to allow everyone to generate a workout graph easily from a simple interface
+* Option to add photo thumbnail with name caption--here's an example of what this might look like:
+
+
+![image](https://user-images.githubusercontent.com/46698605/138544965-b8c72825-1860-4d2f-9b5f-85c8e9563844.png)
 
 
 Watch this space for additional functionality and updates...
