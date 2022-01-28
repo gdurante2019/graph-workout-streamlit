@@ -17,6 +17,9 @@ I'm also working on additional functionality to enable users to upload a profile
 ![image](https://user-images.githubusercontent.com/46698605/138544965-b8c72825-1860-4d2f-9b5f-85c8e9563844.png)
 
 
-## Coming soon:
-I'm working on deploying this code using Streamlit to allow everyone to generate a workout graph easily from a simple interface.
+## Planned feature additions:
+* Adding max power annotation and plot of heart rate during the workout
+* Deploying this code using Streamlit to allow everyone to generate a workout graph easily from a simple interface
+
+
 Watch this space for additional functionality and updates...
