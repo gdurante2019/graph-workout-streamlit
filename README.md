@@ -7,14 +7,13 @@ _Note:_  these graphs are created from .fit files, not by Zwift, and no Zwift br
 The inspiration for this project comes from discussions with fellow Zwift enthusiasts who race in the Zwift Racing League on the Backpedal team and would like to share their workout summary graphs from Zwift rides in a simple, standardized way in chat discussions.  The utility of the graphs generated from this code is to make it easy for riders to understand, at a glance, the workout efforts of fellow riders.
 
 ## Usage
-Users will upload workout fitfiles and enter their FTP.  Here's an example:
+Users will upload workout fitfiles and enter their FTP.  The resulting graph will contain smoothed power output, with workout zones shown in varying colors, and a plot of heart rate during the workout.  Here's an example:
 
-![image](https://github.com/gdurante2019/graph-workout-streamlit/blob/main/example-graph-no-photo.png)
-
+![image](https://github.com/gdurante2019/graph-workout-streamlit/blob/main/example-graph-no-photo-022022.png)
 
 
 ## Planned Feature Additions
-* Adding max power annotation and plot of heart rate during the workout
+* Adding max power and max heart rate annotations 
 * Deploying this code using Streamlit to allow everyone to generate a workout graph easily from a simple interface
 * Option to add photo thumbnail with name caption--here's an example of what this might look like:
 
