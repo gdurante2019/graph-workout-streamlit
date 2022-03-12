@@ -1,9 +1,6 @@
 .DS_store
 .ipynb_checkpoints
-Graph-fitfile-streamlit.py
-Race_day_2_Giro_Della_Donna_video_up_.fit
-ben-pitt-giro-della-donna.png
-demo_annotation_box.ipynb
-image_100_100.png
+environment.yml
+requirements.txt
 
 # test
