@@ -1,0 +1,6 @@
+C:\Jenkins\workspace\CCR-Rel-FIT-Pipeline\cs\Examples\FitPortable\obj\Release\Dynastream.Fit.Portable.dll
+C:\Jenkins\workspace\CCR-Rel-FIT-Pipeline\cs\Examples\FitPortable\obj\Release\Dynastream.Fit.Portable.pdb
+C:\Jenkins\workspace\CCR-Rel-FIT-Pipeline\cs\Dynastream.Fit.Portable.dll
+C:\Jenkins\workspace\CCR-Rel-FIT-Pipeline\cs\Dynastream.Fit.Portable.pdb
+C:\Jenkins\workspace\CCR-Rel-FIT-Pipeline\cs\examples\FitPortable\obj\Release\FitPortable.csprojAssemblyReference.cache
+C:\Jenkins\workspace\CCR-Rel-FIT-Pipeline\cs\examples\FitPortable\obj\Release\FitPortable.csproj.CoreCompileInputs.cache
