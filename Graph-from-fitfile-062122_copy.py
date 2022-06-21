@@ -60,36 +60,11 @@ def parse_fitfile(uploaded_file):
             r[record_data.name] = record_data.value
         workout.append(r)
     df = pd.DataFrame(workout)
-    
     return df
-
-def workout_date_time_freq(df):
-    # Get date
-    timestamp = df['timestamp'][:1]
-    date = np.datetime_as_string(timestamp, unit='D')
-    date_str = str(date)
-    date_str = date_str.strip("[")
-    date_str = date_str.strip("]")
-    date_str = date_str.strip("'")
-    
-    # Get workout length in minutes
-    num_datapoints = int(len(df['timestamp']))
-    workout_timelength = df['timestamp'][4674] - df['timestamp'][0]
-    workout_seconds = int(workout_timelength.total_seconds())
-    workout_minutes = workout_seconds/60
-
-    # Compute frequency of data recording from number of seconds in workout divided by the number of data points
-    rec_freq = round(workout_seconds/num_datapoints)
-    freq = 60 / rec_freq
-
-    return date_str, num_datapoints, freq
 
 def df_clean_trim(df):
     #Drop unnecessary columns
-    df_cleaned = df.drop(columns = ['altitude', 'cadence', 'compressed_speed_distance', 'cycle_length', 'distance', 
-        'enhanced_altitude', 'enhanced_speed', 'grade', 'position_lat', 'position_long', 
-        'resistance', 'temperature', 'time_from_course', 'timestamp'], axis=1, inplace=True)
-
+    df_cleaned = df[['heart_rate', 'power', 'speed', 'timestamp']] 
     # Insert a column 'data_points' to enable selection of max hr and watts by index
     df_cleaned.insert(loc=0, column='data_points', value=np.arange(len(df)))
     df_cleaned.rename(columns = {'power':'watts'}, inplace = True)
@@ -97,7 +72,28 @@ def df_clean_trim(df):
 
     return df_cleaned
 
-def convert_to_arr(df_cleaned):
+def workout_date_time_freq(df_cleaned):
+    # Get date
+    timestamp = df_cleaned['timestamp'][:1]
+    date = np.datetime_as_string(timestamp, unit='D')
+    date_str = str(date)
+    date_str = date_str.strip("[")
+    date_str = date_str.strip("]")
+    date_str = date_str.strip("'")
+    
+    # Get workout length in minutes
+    num_datapoints = int(len(df_cleaned['timestamp']))
+    workout_timelength = df_cleaned['timestamp'][4674] - df_cleaned['timestamp'][0]
+    workout_seconds = int(workout_timelength.total_seconds())
+    workout_minutes = workout_seconds/60
+
+    # Compute frequency of data recording from number of seconds in workout divided by the number of data points
+    rec_freq = round(workout_seconds/num_datapoints)
+    freq = 60 / rec_freq
+
+    return date_str, num_datapoints, workout_minutes, rec_freq, freq
+
+def convert_to_arr(df_cleaned, freq):
     workout_data = df_cleaned.to_records(index=False)
     watts = workout_data['watts']
     max_watts = max(watts)
@@ -105,7 +101,7 @@ def convert_to_arr(df_cleaned):
     # Find maximum power value and time stamp
     minutes = workout_data['data_points']/freq
     max_watts_idx = np.argmax(workout_data['watts'])
-    max_watts_timestamp = minutes[max_pwr_idx]
+    max_watts_timestamp = minutes[max_watts_idx]
 
     # Find maximum heart rate value and time stamp
     hr = workout_data['heart_rate']
@@ -113,14 +109,14 @@ def convert_to_arr(df_cleaned):
     max_hr_idx = np.argmax(workout_data['heart_rate'])
     max_hr_timestamp = minutes[max_hr_idx]
 
-    return watts, max_watts, minutes, max_pwr_timestamp, hr, max_hr, max_hr_timestamp
+    return watts, max_watts, minutes, max_watts_timestamp, hr, max_hr, max_hr_timestamp
 
 # Run functions:
 if uploaded_file:
     df = parse_fitfile(uploaded_file)
-    date_str, num_datapoints, freq = workout_date_time_freq(df)
     df_cleaned = df_clean_trim(df)
-    watts, max_watts, minutes, max_pwr_timestamp, hr, max_hr, max_hr_timestamp = convert_to_arr(df_cleaned)
+    date_str, num_datapoints, workout_minutes, rec_freq, freq = workout_date_time_freq(df)
+    watts, max_watts, minutes, max_pwr_timestamp, hr, max_hr, max_hr_timestamp = convert_to_arr(df_cleaned, freq)
     # Smooth power curve using helper function 'smooth.py'
     watts_smoothed = smooth(watts, window_len=10)
 
