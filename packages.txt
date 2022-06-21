@@ -1,7 +1,8 @@
 freeglut3-dev
 libgtk2.0-dev
 
-# https://developer.garmin.com/downloads/fit/sdk/FitSDKRelease_21.84.00.zip
+https://developer.garmin.com/downloads/fit/sdk/FitSDKRelease_21.84.00.zip
+https://files.pythonhosted.org/packages/4b/de/cf0f223255bf12c885acdc3bcce7fdc5607db496d3e3b682c001a51406e0/fitdecode-0.10.0-py3-none-any.whl
 fitparse-1.2.0
 Fitdecode-0.10.0
 fitparse-1.2.0.tar.gz
