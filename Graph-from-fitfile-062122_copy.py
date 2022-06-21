@@ -36,6 +36,9 @@ if ftp!="":
 else:
     st.write("Please enter your ftp in the box; otherwise, graph will not display.")
 
+# Instruction to scroll down to the bottom of the page for the chart
+st.write("Scroll to the bottom to view and download graph.")
+
 # The code for converting .fit files into a pandas dataframe is from http://johannesjacob.com/analyze-your-cycling-data-python/.
 # To install the python packages, type 'pip install pandas numpy fitparse matplotlib tqdm' on the command line.
 
