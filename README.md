@@ -15,5 +15,5 @@ Users will upload workout fitfiles and enter their FTP. The resulting graph will
 
 
 ## Planned Feature Additions
-* Deploying this code using Streamlit to allow everyone to generate a workout graph easily from a simple interface -- DONE.  The Streamlit app can be accessed at https://share.streamlit.io/gdurante2019/graph-workout-streamlit/main/Graph-from-fitfile-062122_copy.py.
+* Deploying this code using Streamlit to allow everyone to generate a workout graph easily from a simple interface -- DONE. 
 * Option to add photo thumbnail with name caption -- This is on the back burner for now.
