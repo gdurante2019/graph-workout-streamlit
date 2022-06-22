@@ -3,10 +3,10 @@ This repo houses code for a function that takes in a .fit file and returns a gra
 
 _Note:_  these graphs are created from .fit files, not by Zwift, and no Zwift branding is implied or endorsed.  
 
-*Newsflash!*  The code has been deployed to Streamlit as of June 21, 2022. 🧑‍💻 🥳 🎉   The app can be accessed at https://share.streamlit.io/gdurante2019/graph-workout-streamlit/main/Graph-from-fitfile-062122_copy.py.
+*Newsflash!*  The code has been deployed to Streamlit as of June 21, 2022. 🧑‍💻 🥳 🎉   The app can be accessed at https://gdurante2019-graph-workout-str-graph-from-fitfile-062222-5a5ikb.streamlitapp.com/.
 
 ## Purpose
-The inspiration for this project comes from discussions with fellow Zwift enthusiasts who race in the Zwift Racing League on the Backpedal team and would like to share their workout summary graphs from Zwift rides in a simple, standardized way in chat discussions.  The utility of the graphs generated from this code is to make it easy for riders to understand, at a glance, the workout efforts of fellow riders.
+The inspiration for this project comes from discussions with fellow cycling enthusiasts who race in the Zwift Racing League on the Backpedal team and would like to share their workout summary graphs from Zwift rides in a simple, standardized way in chat discussions.  The utility of the graphs generated from this code is to make it easy for riders to understand, at a glance, the workout efforts of fellow riders.
 
 ## Usage
 Users will upload workout fitfiles and enter their FTP. The resulting graph will contain smoothed power output, workout zones, a plot of heart rate during the workout, and max power and max heart rate annotations. Here's an example:
@@ -15,5 +15,5 @@ Users will upload workout fitfiles and enter their FTP. The resulting graph will
 
 
 ## Planned Feature Additions
-* Deploying this code using Streamlit to allow everyone to generate a workout graph easily from a simple interface -- DONE.  The Streamlit app can be accessed at https://share.streamlit.io/gdurante2019/graph-workout-streamlit/main/Graph-from-fitfile-062122_copy.py.
+* Deploying this code using Streamlit to allow everyone to generate a workout graph easily from a simple interface -- DONE. 
 * Option to add photo thumbnail with name caption -- This is on the back burner for now.
