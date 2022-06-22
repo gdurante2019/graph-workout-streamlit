@@ -67,11 +67,13 @@ def parse_fitfile(uploaded_file):
 
 def df_clean_trim(df):
     #Drop unnecessary columns
-    df_cleaned = df[['heart_rate', 'power', 'speed', 'timestamp']] 
+    df_cleaned = df[['heart_rate', 'power', 'speed', 'timestamp']].copy() 
     # Insert a column 'data_points' to enable selection of max hr and watts by index
     df_cleaned.insert(loc=0, column='data_points', value=np.arange(len(df)))
     df_cleaned.rename(columns = {'power':'watts'}, inplace = True)
     df_cleaned['watts'].fillna(0, inplace=True)
+    df_cleaned['heart_rate'].fillna(0, inplace=True)
+    df_cleaned['speed'].fillna(0, inplace=True)
 
     return df_cleaned
 
@@ -86,7 +88,7 @@ def workout_date_time_freq(df_cleaned):
     
     # Get workout length in minutes
     num_datapoints = int(len(df_cleaned['timestamp']))
-    workout_timelength = df_cleaned['timestamp'][4674] - df_cleaned['timestamp'][0]
+    workout_timelength = df_cleaned['timestamp'][num_datapoints-1] - df_cleaned['timestamp'][0]
     workout_seconds = int(workout_timelength.total_seconds())
     workout_minutes = workout_seconds/60
 
@@ -99,7 +101,7 @@ def workout_date_time_freq(df_cleaned):
 def convert_to_arr(df_cleaned, freq):
     workout_data = df_cleaned.to_records(index=False)
     watts = workout_data['watts']
-    max_watts = max(watts)
+    max_watts = int(max(watts))
 
     # Find maximum power value and time stamp
     minutes = workout_data['data_points']/freq
@@ -108,7 +110,7 @@ def convert_to_arr(df_cleaned, freq):
 
     # Find maximum heart rate value and time stamp
     hr = workout_data['heart_rate']
-    max_hr = max(hr)
+    max_hr = int(max(hr))
     max_hr_idx = np.argmax(workout_data['heart_rate'])
     max_hr_timestamp = minutes[max_hr_idx]
 
@@ -126,15 +128,15 @@ if uploaded_file:
 # Plot data
 if uploaded_file:
     if ftp != None:
-        fig, ax1 = plt.subplots(figsize=(18, 8))
+        fig, ax1 = plt.subplots(figsize=(34, 14))
         ax1.set_facecolor(color='#252525')
-        ax1.set_xlabel("Time in Minutes", fontsize='large')
-        ax1.set_ylabel("Watts", fontsize='large')
-        ax1.tick_params(labelsize='large')
+        ax1.set_xlabel("Minutes", fontsize='xx-large')
+        ax1.set_ylabel("Watts", fontsize='xx-large')
+        ax1.tick_params(labelsize='xx-large')
 
-    # This expands the top of the graph to 60% beyond max watts
+    # This expands the top of the graph to 90% beyond max watts, to create enough room for HR graph above
         if uploaded_file:
-            ax1.set_ylim(top=max(watts)*1.80)
+            ax1.set_ylim(top=max(watts)*1.90)
 
             # logic for color under the graph based on % of FTP (thanks to Jonas Häggqvist for this code)
             if ftp!="" and uploaded_file: 
@@ -155,17 +157,17 @@ if uploaded_file:
         
         # Adding the workout date to the graph
         workout_date = Annotation(f'Workout date: {date_str}', xy=[xmax//2, ymax-(ymax*0.08)], 
-                                  ha='center', color='white', fontweight='bold', fontsize='large')
+                                  ha='center', color='white', fontweight='bold', fontsize='xx-large')
         ax1.add_artist(workout_date)
         
         # Plot smoothed power, line color, and thickness
         if ftp!="" and uploaded_file: 
-            plt.plot(minutes, watts_smoothed, color='white', linewidth=0.75)
+            plt.plot(minutes, watts_smoothed, color='white', linewidth=1.15)
         
             # Annotate max power 
             max_power = Annotation(f'{max_watts}w', xy=(max_pwr_timestamp, max_watts), xytext=(0, 15), 
                                    textcoords="offset pixels", ha='center', color='white', fontweight='bold', 
-                                   fontsize='large', arrowprops=dict(arrowstyle='wedge', color='yellow'))
+                                   fontsize='xx-large', arrowprops=dict(arrowstyle='wedge', color='yellow'))
             ax1.add_artist(max_power)
             
             plt.vlines(x=max_pwr_timestamp, ymin=0, ymax=max_watts, color='white', linewidth=1.5)
@@ -173,16 +175,17 @@ if uploaded_file:
         
             # Instantiate second y axis for heart rate graph
             ax2 = ax1.twinx()
-            ax2.set_ylabel("Heart Rate", fontsize='large')    
-            ax2.set_ylim(top=max(hr)*1.30)
+            ax2.set_ylabel("Heart Rate", fontsize='xx-large')    
+            ax2.set_ylim(top=max(hr)*1.20)
+            ax2.tick_params(labelsize='xx-large')
         
             # Plot heart rate
-            ax2.plot(minutes, hr, color='red', linewidth=0.75)
+            ax2.plot(minutes, hr, color='red', linewidth=1.25)
         
             # Annotate max heart rate
             max_hr_annt = Annotation(f'{max_hr}bpm', xy=(max_hr_timestamp, max_hr), xytext=(0, 15), 
                                    textcoords="offset pixels", ha='center', color='white', fontweight='bold', 
-                                   fontsize='large', arrowprops=dict(arrowstyle='wedge', color='red'))
+                                   fontsize='xx-large', arrowprops=dict(arrowstyle='wedge', color='red'))
             ax2.add_artist(max_hr_annt)
 
         st.pyplot(fig)

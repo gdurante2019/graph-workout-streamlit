@@ -19,4 +19,8 @@ def smooth(x,window_len=11,window='hanning'):
     y=numpy.convolve(w/w.sum(),s,mode='same')
     return y[window_len:-window_len+1]
 
+# +
+# smoothing_window = scaling_factor * len(watts)/width
+# -
+
 
