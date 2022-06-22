@@ -11,7 +11,7 @@ The inspiration for this project comes from discussions with fellow cycling enth
 ## Usage
 Users will upload workout fitfiles and enter their FTP. The resulting graph will contain smoothed power output, workout zones, a plot of heart rate during the workout, and max power and max heart rate annotations. Here's an example:
 
-![image](https://github.com/gdurante2019/graph-workout-streamlit/blob/main/example-graph-hr-maxwatts-022022.png)
+![image](https://github.com/gdurante2019/graph-workout-streamlit/blob/main/example_workout_graph.png)
 
 
 ## Planned Feature Additions
