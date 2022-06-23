@@ -67,13 +67,12 @@ def parse_fitfile(uploaded_file):
 
 def df_clean_trim(df):
     #Drop unnecessary columns
-    df_cleaned = df[['heart_rate', 'power', 'speed', 'timestamp']].copy() 
+    df_cleaned = df[['heart_rate', 'power', 'timestamp']].copy() 
     # Insert a column 'data_points' to enable selection of max hr and watts by index
     df_cleaned.insert(loc=0, column='data_points', value=np.arange(len(df)))
     df_cleaned.rename(columns = {'power':'watts'}, inplace = True)
     df_cleaned['watts'].fillna(0, inplace=True)
     df_cleaned['heart_rate'].fillna(0, inplace=True)
-    df_cleaned['speed'].fillna(0, inplace=True)
 
     return df_cleaned
 
