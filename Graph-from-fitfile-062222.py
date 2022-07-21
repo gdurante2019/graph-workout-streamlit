@@ -129,9 +129,9 @@ if uploaded_file:
     if ftp != None:
         fig, ax1 = plt.subplots(figsize=(34, 14))
         ax1.set_facecolor(color='#252525')
-        ax1.set_xlabel("Minutes", fontsize='xx-large')
-        ax1.set_ylabel("Watts", fontsize='xx-large')
-        ax1.tick_params(labelsize='xx-large')
+        ax1.set_xlabel("Minutes", fontsize=22.0)
+        ax1.set_ylabel("Watts", fontsize=22.0)
+        ax1.tick_params(labelsize=22.0)
 
     # This expands the top of the graph to 90% beyond max watts, to create enough room for HR graph above
         if uploaded_file:
@@ -156,7 +156,7 @@ if uploaded_file:
         
         # Adding the workout date to the graph
         workout_date = Annotation(f'Workout date: {date_str}', xy=[xmax//2, ymax-(ymax*0.08)], 
-                                  ha='center', color='white', fontweight='bold', fontsize='xx-large')
+                                  ha='center', color='white', fontweight='bold', fontsize=22.0)
         ax1.add_artist(workout_date)
         
         # Plot smoothed power, line color, and thickness
@@ -166,7 +166,7 @@ if uploaded_file:
             # Annotate max power 
             max_power = Annotation(f'{max_watts}w', xy=(max_pwr_timestamp, max_watts), xytext=(0, 15), 
                                    textcoords="offset pixels", ha='center', color='white', fontweight='bold', 
-                                   fontsize='xx-large', arrowprops=dict(arrowstyle='wedge', color='yellow'))
+                                   fontsize=22.0, arrowprops=dict(arrowstyle='wedge', color='yellow'))
             ax1.add_artist(max_power)
             
             plt.vlines(x=max_pwr_timestamp, ymin=0, ymax=max_watts, color='white', linewidth=1.5)
@@ -174,9 +174,9 @@ if uploaded_file:
         
             # Instantiate second y axis for heart rate graph
             ax2 = ax1.twinx()
-            ax2.set_ylabel("Heart Rate", fontsize='xx-large')    
+            ax2.set_ylabel("Heart Rate", fontsize=22.0)    
             ax2.set_ylim(top=max(hr)*1.20)
-            ax2.tick_params(labelsize='xx-large')
+            ax2.tick_params(labelsize=22.0)
         
             # Plot heart rate
             ax2.plot(minutes, hr, color='red', linewidth=1.25)
@@ -184,7 +184,7 @@ if uploaded_file:
             # Annotate max heart rate
             max_hr_annt = Annotation(f'{max_hr}bpm', xy=(max_hr_timestamp, max_hr), xytext=(0, 15), 
                                    textcoords="offset pixels", ha='center', color='white', fontweight='bold', 
-                                   fontsize='xx-large', arrowprops=dict(arrowstyle='wedge', color='red'))
+                                   fontsize=22.0, arrowprops=dict(arrowstyle='wedge', color='red'))
             ax2.add_artist(max_hr_annt)
 
         st.pyplot(fig)
