@@ -14,6 +14,9 @@ Users will upload workout fitfiles and enter their FTP. The resulting graph will
 ![image](https://github.com/gdurante2019/graph-workout-streamlit/blob/main/example_workout_graph.png)
 
 
-## Planned Feature Additions
-* Deploying this code using Streamlit to allow everyone to generate a workout graph easily from a simple interface -- DONE. 
-* Option to add photo thumbnail with name caption -- This is on the back burner for now.
+## Acknowledgments
+Many thanks to the following, whose code has helped enable this project!
+* Johannes Jacob, whose blog provides code and instructions for converting .fit files into a pandas dataframe (http://johannesjacob.com/analyze-your-cycling-data-python/)
+* David Cooper, who created the fitparse library (https://github.com/dtcooper/python-fitparse) referenced in Johannes Jacob's blog
+* Jonas Häggqvist (https://github.com/rasher), fellow Backpedaler, who provided the smooth.py code for smoothing the workout data
+* Phil Daws (https://github.com/vegancodecruncher), Vegan Triathlete and fellow Backpedaler, who provided starter code for adding artists to matplotlib plot
