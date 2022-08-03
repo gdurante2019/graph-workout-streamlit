@@ -1,12 +1,10 @@
 # Code for producing cycling workout summary graph
-This repo houses code for a function that takes in a .fit file and returns a graph with a similar color scheme to Zwift workout summary graphs.  
+This repo houses code for a Streamlit-hosted app that takes in a .fit file and returns a graph with a similar color scheme to Zwift workout summary graphs.  The app can be accessed at https://gdurante2019-graph-workout-str-graph-from-fitfile-062222-5a5ikb.streamlitapp.com/.
 
 _Note:_  these graphs are created from .fit files, not by Zwift, and no Zwift branding is implied or endorsed by Zwift.  
 
-*Newsflash!*  The code has been deployed to Streamlit as of June 21, 2022. 🧑‍💻 🥳 🎉   The app can be accessed at https://gdurante2019-graph-workout-str-graph-from-fitfile-062222-5a5ikb.streamlitapp.com/.
-
 ## Purpose
-The inspiration for this project comes from discussions with fellow cycling enthusiasts who race in the Zwift Racing League on the Backpedal  (BAKPDL) team and would like to share their workout summary graphs from Zwift rides in a simple, standardized way in chat discussions.  The utility of the graphs generated from this code is to make it easy for riders to understand, at a glance, the workout efforts of fellow riders.
+The inspiration for this project comes from discussions with fellow cycling enthusiasts who race in the Zwift Racing League on the Backpedal  (BAKPDL) team and would like to share their workout summary graphs from Zwift rides or outdoor rides in a simple, standardized way in chat discussions.  The utility of the graphs generated from this code is to make it easy for riders to understand, at a glance, the workout efforts of fellow riders.
 
 ## Usage
 Users will upload workout fitfiles and enter their FTP. The resulting graph will contain smoothed power output, workout zones, a plot of heart rate during the workout, and max power and max heart rate annotations. Here's an example:
