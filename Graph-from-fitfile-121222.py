@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # Recreating Zwift ride powerplot
-# Graph-from-fitfile-062122.py
+# Graph-from-fitfile-121222.py
 
 import os
 import datetime
@@ -66,14 +66,21 @@ def parse_fitfile(uploaded_file):
     return df
 
 def df_clean_trim(df):
-    #Drop unnecessary columns
-    df_cleaned = df[['heart_rate', 'power', 'timestamp']].copy() 
-    # Insert a column 'data_points' to enable selection of max hr and watts by index
-    df_cleaned.insert(loc=0, column='data_points', value=np.arange(len(df)))
-    df_cleaned.rename(columns = {'power':'watts'}, inplace = True)
-    df_cleaned['watts'].fillna(0, inplace=True)
-    df_cleaned['heart_rate'].fillna(0, inplace=True)
-
+    # Set up new dataframe with only necessary columns
+    # First, check to see if heart rate data is present
+    if ('heart_rate' in column_list):
+        df_cleaned = df[['heart_rate', 'power', 'timestamp']].copy()
+        # Insert a column 'data_points' to enable selection of max hr and watts by index
+        df_cleaned.insert(loc=0, column='data_points', value=np.arange(len(df)))
+        df_cleaned.rename(columns = {'power':'watts'}, inplace = True)
+        df_cleaned['watts'].fillna(0, inplace=True)
+        df_cleaned['heart_rate'].fillna(0, inplace=True)
+    else:
+        df_cleaned = df[['power', 'timestamp']].copy()
+        # Insert a column 'data_points' to enable selection of max hr and watts by index
+        df_cleaned.insert(loc=0, column='data_points', value=np.arange(len(df)))
+        df_cleaned.rename(columns = {'power':'watts'}, inplace = True)
+        df_cleaned['watts'].fillna(0, inplace=True)
     return df_cleaned
 
 def workout_date_time_freq(df_cleaned):
@@ -108,16 +115,21 @@ def convert_to_arr(df_cleaned, freq):
     max_watts_timestamp = minutes[max_watts_idx]
 
     # Find maximum heart rate value and time stamp
-    hr = workout_data['heart_rate']
-    max_hr = int(max(hr))
-    max_hr_idx = np.argmax(workout_data['heart_rate'])
-    max_hr_timestamp = minutes[max_hr_idx]
-
+    if ('heart_rate' in column_list):
+        hr = workout_data['heart_rate']
+        max_hr = int(max(hr))
+        max_hr_idx = np.argmax(workout_data['heart_rate'])
+        max_hr_timestamp = minutes[max_hr_idx]
+    else:
+        hr = 0
+        max_hr = 0
+        max_hr_timestamp = 0
     return watts, max_watts, minutes, max_watts_timestamp, hr, max_hr, max_hr_timestamp
 
 # Run functions:
 if uploaded_file:
     df = parse_fitfile(uploaded_file)
+    column_list = list(df.columns)
     df_cleaned = df_clean_trim(df)
     date_str, num_datapoints, workout_minutes, rec_freq, freq = workout_date_time_freq(df)
     watts, max_watts, minutes, max_pwr_timestamp, hr, max_hr, max_hr_timestamp = convert_to_arr(df_cleaned, freq)
@@ -172,15 +184,17 @@ if uploaded_file:
             plt.vlines(x=max_pwr_timestamp, ymin=0, ymax=max_watts, color='white', linewidth=1.5)
             
         
+        # Add HR data to graph
+        if ('heart_rate' in column_list):
             # Instantiate second y axis for heart rate graph
             ax2 = ax1.twinx()
             ax2.set_ylabel("Heart Rate", fontsize=22.0)    
             ax2.set_ylim(top=max(hr)*1.20)
             ax2.tick_params(labelsize=22.0)
-        
+
             # Plot heart rate
-            ax2.plot(minutes, hr, color='red', linewidth=1.25)
-        
+            ax2.plot(minutes, hr, color='red', linewidth=1.2)
+
             # Annotate max heart rate
             max_hr_annt = Annotation(f'{max_hr}bpm', xy=(max_hr_timestamp, max_hr), xytext=(0, 15), 
                                    textcoords="offset pixels", ha='center', color='white', fontweight='bold', 
