@@ -1,5 +1,5 @@
 # Code for producing cycling workout summary graph
-This repo houses code for a Streamlit-hosted app that takes in a .fit file and returns a graph with a similar color scheme to Zwift workout summary graphs.  The app can be accessed at https://gdurante2019-graph-workout-str-graph-from-fitfile-062222-5a5ikb.streamlitapp.com/.
+This repo houses code for a Streamlit-hosted app that takes in a .fit file and returns a graph with a similar color scheme to Zwift workout summary graphs.  The app can be accessed at https://gdurante2019-graph-workout-str-graph-from-fitfile-121222-ahovbx.streamlit.app/.
 
 _Note:_  these graphs are created from .fit files, not by Zwift, and no Zwift branding is implied or endorsed by Zwift.  
 
